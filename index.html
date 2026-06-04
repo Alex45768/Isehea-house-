@@ -3,112 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iseheia House | A Transylvanian Sanctuary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <title>Iseheia House | Inner Stillness in Sibiel</title>
+    <!-- High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #FAF9F6; --text-main: #2C2C2C; --accent: #B89B72; }
+        :root {
+            --bg-dark: #121212;
+            --bg-light: #F9F8F6;
+            --text-dark: #2A2A2A;
+            --text-light: #E0E0E0;
+            --accent: #A68A64; /* Muted Gold */
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Lato', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.8; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; }
-        
-        nav { background: #1A1A1A; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; cursor: pointer;}
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 3rem; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; cursor: pointer; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        body, html { font-family: 'Montserrat', sans-serif; background-color: var(--bg-dark); color: var(--text-light); scroll-behavior: smooth; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
-        /* Page Sections */
-        .page { display: none; }
-        .page.active-page { display: block; animation: fadeIn 0.5s; }
+        /* Elegant Navigation */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; transition: background 0.4s; }
+        nav.scrolled { background: rgba(18, 18, 18, 0.95); backdrop-filter: blur(10px); padding: 1.2rem 5%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #fff; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 3rem; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s ease; cursor: pointer; }
+        .nav-links a:hover { color: var(--accent); }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* Pages */
+        .page { display: none; opacity: 0; transition: opacity 0.6s ease; }
+        .page.active-page { display: block; opacity: 1; }
 
-        /* Home Styles */
-        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('YOUR_PREMIUM_PHOTO_HERE.jpg') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
-        .hero h1 { font-size: 5rem; letter-spacing: 2px; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 2rem; }
-        .btn-luxury { padding: 1rem 3rem; border: 1px solid #fff; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: 0.4s; cursor: pointer; }
-        .btn-luxury:hover { background: #fff; color: var(--text-main); }
+        /* Hero Section with Parallax */
+        .hero {
+            height: 100vh;
+            /* Placeholder: Moody Carpathian Mountain Vibe */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(18,18,18,0.9)), url('https://images.unsplash.com/photo-1521151716396-b2da27b1a19f?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+        }
+        .hero h1 { font-size: 6rem; letter-spacing: 5px; margin-bottom: 1rem; color: #fff; }
+        .hero p { font-size: 1.4rem; font-style: italic; letter-spacing: 2px; color: var(--accent); margin-bottom: 3rem; }
+        .btn-outline { padding: 1rem 3rem; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; transition: all 0.4s ease; cursor: pointer; }
+        .btn-outline:hover { background: var(--accent); color: var(--bg-dark); }
 
-        /* Experience Styles */
-        #experience-page { background-color: #1A1A1A; color: #fff; min-height: 100vh; }
-        #experience-page h1 { color: var(--accent); }
+        /* Split Content Section */
+        .section-light { background-color: var(--bg-light); color: var(--text-dark); padding: 8rem 5%; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 6rem; }
+        .section-header h2 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .section-header p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); }
 
-        .section { padding: 6rem 10%; max-width: 1400px; margin: 0 auto; text-align: center; }
-        .section h2, .section h1 { font-size: 3rem; margin-bottom: 2rem; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-top: 4rem; }
-        .grid-item h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .grid-item p { color: #ccc; }
+        .split-feature { display: flex; align-items: center; justify-content: space-between; gap: 5rem; margin-bottom: 8rem; }
+        .split-feature:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .feature-text p { font-size: 1rem; line-height: 2; color: #555; }
+        .feature-image { flex: 1; height: 600px; border-radius: 2px; background-size: cover; background-position: center; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+        /* The Experience Page Grid */
+        #experience-page { padding-top: 8rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        .card { background: #1A1A1A; padding: 3rem; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: transform 0.4s ease; }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card h4 { font-size: 1.8rem; color: var(--accent); margin-bottom: 1rem; }
+        .card p { font-size: 0.9rem; line-height: 1.8; color: #aaa; }
+
+        /* Footer */
+        footer { text-align: center; padding: 6rem 5%; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer h2 { font-size: 3rem; margin-bottom: 2rem; }
+
+        @media(max-width: 900px) {
+            .hero h1 { font-size: 4rem; }
+            .split-feature, .split-feature:nth-child(even) { flex-direction: column; gap: 3rem; margin-bottom: 5rem; }
+            .feature-image { height: 400px; width: 100%; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav id="navbar">
         <a onclick="switchPage('home')" class="logo">Iseheia</a>
         <div class="nav-links">
-            <a onclick="switchPage('home')" id="nav-home" class="active">Home</a>
-            <a onclick="switchPage('experience')" id="nav-experience">The Experience</a>
-            <a href="mailto:contact@iseheia.ro">Reserve</a>
+            <a onclick="switchPage('home')" class="nav-item">The Home</a>
+            <a onclick="switchPage('experience')" class="nav-item">The Village</a>
+            <a href="mailto:contact@iseheia.ro" style="border-bottom: 1px solid var(--accent); padding-bottom: 5px;">Reserve</a>
         </div>
     </nav>
 
-    <!-- HOME PAGE -->
+    <!-- THE HOME PAGE -->
     <div id="home-page" class="page active-page">
         <header class="hero">
-            <div>
-                <h1>Iseheia House</h1>
-                <p>The stillness you remember.</p>
-                <a onclick="switchPage('experience')" class="btn-luxury">Explore The Area</a>
-            </div>
+            <h1>Iseheia</h1>
+            <p>Inner stillness. Not as an idea. As a state of being.</p>
+            <a onclick="switchPage('experience')" class="btn-outline">Discover Sibiel</a>
         </header>
 
-        <section class="section">
-            <h2>A Retreat Defined by Nature</h2>
-            <p>Allow the heat of our authentic, wood-fired sauna to reset your system. Step outside into the crisp mountain air and submerge yourself in the premium saltwater ciubăr, perfectly positioned to capture sweeping views of the valley below.</p>
-        </section>
-    </div>
+        <section class="section-light">
+            <div class="container">
+                <div class="section-header">
+                    <p>A 100-Year-Old Home</p>
+                    <h2>The Quiet Rhythm</h2>
+                </div>
 
-    <!-- EXPERIENCE PAGE -->
-    <div id="experience-page" class="page">
-        <section class="section">
-            <h1>Curated For The Enthusiast</h1>
-            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Beyond the house, Transylvania offers unparalleled access to raw nature and high-octane adventure.</p>
-            
-            <div class="grid">
-                <div class="grid-item">
-                    <h3>Alpine Driving</h3>
-                    <p>Strategically positioned as the ultimate basecamp. Push your vehicle's limits on the legendary curves of the Transalpina and Transfăgărășan, then return to unparalleled comfort.</p>
+                <div class="split-feature">
+                    <div class="feature-text">
+                        <h3>Wood & Warmth</h3>
+                        <p>We do not offer shows or forced transformations. We offer a simple, honest space where things slow down on their own. Rest in a meticulously restored century-old home, where the traditional architecture and natural wood textures ground you after a long journey.</p>
+                    </div>
+                    <!-- Placeholder: Premium Cabin Interior -->
+                    <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=2000&auto=format&fit=crop');"></div>
                 </div>
-                <div class="grid-item">
-                    <h3>Mountain Cycling</h3>
-                    <p>Direct access to demanding technical trails and sweeping road routes. We provide a secure space to store and maintain your mountain bikes between downhill runs.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Historic Sibiu</h3>
-                    <p>Just a short drive away, lose yourself in the cobblestone streets and rich architectural heritage of one of Transylvania's most culturally significant cities.</p>
+
+                <div class="split-feature">
+                    <div class="feature-text">
+                        <h3>The Sauna & Ciubăr</h3>
+                        <p>Allow the heat of our authentic wood-fired sauna to reset your system. Step outside into the crisp mountain air and submerge yourself in the premium saltwater hot tub, listening only to the gentle sounds of the nearby river.</p>
+                    </div>
+                    <!-- Placeholder: Aesthetic Sauna/Spa Vibe -->
+                    <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1583847268964-b28e21150493?q=80&w=2000&auto=format&fit=crop');"></div>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- THE EXPERIENCE PAGE -->
+    <div id="experience-page" class="page">
+        <div class="container" style="padding-bottom: 6rem;">
+            <div class="section-header">
+                <p>Mărginimea Sibiului</p>
+                <h2>A Landscape Paused in Time</h2>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>The Transalpina</h4>
+                    <p>Positioned perfectly as a launchpad for the ultimate drive. Push your vehicle's limits on the legendary curves of the Transalpina, then return to unparalleled comfort.</p>
+                </div>
+                <div class="card">
+                    <h4>Historic Sibiu</h4>
+                    <p>Just 20 km away, transition from the isolation of the village to the cobblestone streets and rich architectural heritage of Transylvania's most culturally significant city.</p>
+                </div>
+                <div class="card">
+                    <h4>Mountain Trails</h4>
+                    <p>Direct access to demanding technical biking trails and sweeping road routes. Explore the surrounding hills and forests just a short walk from your door.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2>Return to silence.</h2>
+        <a href="mailto:contact@iseheia.ro" class="btn-outline">Request a Reservation</a>
+    </footer>
+
     <script>
+        // Smooth Page Switching
         function switchPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active-page');
             });
-            // Show target page
-            document.getElementById(pageId + '-page').classList.add('active-page');
-
-            // Update active state in nav
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            if(document.getElementById('nav-' + pageId)) {
-                document.getElementById('nav-' + pageId).classList.add('active');
-            }
-            window.scrollTo(0,0);
+            setTimeout(() => {
+                document.getElementById(pageId + '-page').classList.add('active-page');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
         }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.getElementById('navbar').classList.add('scrolled');
+            } else {
+                document.getElementById('navbar').classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
