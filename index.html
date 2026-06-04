@@ -3,141 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iseheia House | Premium Mountain Retreat in Transylvania</title>
+    <title>Iseheia House | A Transylvanian Sanctuary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #e67e22;
-            --light: #f9f9f9;
-            --text: #333;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { color: var(--text); line-height: 1.6; background-color: #fff; scroll-behavior: smooth; }
+        :root { --bg-color: #FAF9F6; --text-main: #2C2C2C; --accent: #B89B72; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.8; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; }
         
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; padding: 1.5rem 5%; background: var(--primary); color: white; position: sticky; top: 0; z-index: 100; }
-        nav .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
-        nav .links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.3s; }
-        nav .links a:hover { color: var(--accent); }
+        nav { background: #1A1A1A; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; cursor: pointer;}
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 3rem; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease; cursor: pointer; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        /* Hero Section */
-        .hero {
-            /* Replace with your new wide-angle exterior or landscape photo */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('YOUR_HIGH_RES_PHOTO.jpg') center/cover;
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-        .hero h1 { font-size: 4rem; margin-bottom: 10px; font-weight: 300; }
-        .hero p { font-size: 1.5rem; margin-bottom: 30px; font-weight: 300; }
-        .btn-primary { padding: 15px 35px; background: var(--accent); color: white; text-decoration: none; border-radius: 4px; font-size: 1.1rem; font-weight: bold; transition: 0.3s; }
-        .btn-primary:hover { background: #d35400; transform: translateY(-2px); }
+        /* Page Sections */
+        .page { display: none; }
+        .page.active-page { display: block; animation: fadeIn 0.5s; }
 
-        /* Content Sections */
-        .section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Home Styles */
+        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('YOUR_PREMIUM_PHOTO_HERE.jpg') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+        .hero h1 { font-size: 5rem; letter-spacing: 2px; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 2rem; }
+        .btn-luxury { padding: 1rem 3rem; border: 1px solid #fff; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: 0.4s; cursor: pointer; }
+        .btn-luxury:hover { background: #fff; color: var(--text-main); }
+
+        /* Experience Styles */
+        #experience-page { background-color: #1A1A1A; color: #fff; min-height: 100vh; }
+        #experience-page h1 { color: var(--accent); }
+
+        .section { padding: 6rem 10%; max-width: 1400px; margin: 0 auto; text-align: center; }
+        .section h2, .section h1 { font-size: 3rem; margin-bottom: 2rem; }
         
-        /* Amenities Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--light); padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.3rem; }
-
-        /* Location & Activities (Tailored for the area) */
-        .activities { background: var(--primary); color: white; }
-        .activities .section-title { color: white; }
-        .activities .card { background: rgba(255,255,255,0.1); color: white; box-shadow: none; border: 1px solid rgba(255,255,255,0.2); }
-        .activities .card h3 { color: var(--accent); }
-
-        /* Testimonials */
-        .testimonial-box { background: var(--light); padding: 40px; border-radius: 8px; text-align: center; font-style: italic; max-width: 800px; margin: 0 auto; border-left: 5px solid var(--accent); }
-
-        /* Footer */
-        footer { background: #1a252f; color: white; text-align: center; padding: 2rem 5%; }
-        
-        @media(max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; align-items: center; gap: 15px; }
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-top: 4rem; }
+        .grid-item h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .grid-item p { color: #ccc; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ISEHEIA HOUSE</div>
-        <div class="links">
-            <a href="#about">The House</a>
-            <a href="#activities">Explore</a>
-            <a href="#book" class="btn-primary" style="padding: 8px 20px; margin-left: 20px;">Book Now</a>
+        <a onclick="switchPage('home')" class="logo">Iseheia</a>
+        <div class="nav-links">
+            <a onclick="switchPage('home')" id="nav-home" class="active">Home</a>
+            <a onclick="switchPage('experience')" id="nav-experience">The Experience</a>
+            <a href="mailto:contact@iseheia.ro">Reserve</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1>The Stillness You Remember</h1>
-        <p>A private sanctuary nestled in the heart of Transylvania.</p>
-        <a href="#book" class="btn-primary">Reserve Your Stay</a>
-    </header>
-
-    <section id="about" class="section">
-        <h2 class="section-title">Designed for Relaxation</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Traditional Sauna</h3>
-                <p>Unwind after a long day of travel in our authentic, wood-fired traditional sauna.</p>
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active-page">
+        <header class="hero">
+            <div>
+                <h1>Iseheia House</h1>
+                <p>The stillness you remember.</p>
+                <a onclick="switchPage('experience')" class="btn-luxury">Explore The Area</a>
             </div>
-            <div class="card">
-                <h3>Saltwater Hot Tub</h3>
-                <p>Soak under the stars in our premium saltwater ciubăr, offering panoramic valley views.</p>
-            </div>
-            <div class="card">
-                <h3>Modern Comfort</h3>
-                <p>Fully equipped kitchen, high-speed Wi-Fi, and premium bedding for a perfect night's rest.</p>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <section id="activities" class="section activities">
-        <h2 class="section-title">Adventure Awaits</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>World-Class Driving</h3>
-                <p>Perfectly situated as a base camp for driving the legendary Transalpina and Transfăgărășan mountain passes.</p>
+        <section class="section">
+            <h2>A Retreat Defined by Nature</h2>
+            <p>Allow the heat of our authentic, wood-fired sauna to reset your system. Step outside into the crisp mountain air and submerge yourself in the premium saltwater ciubăr, perfectly positioned to capture sweeping views of the valley below.</p>
+        </section>
+    </div>
+
+    <!-- EXPERIENCE PAGE -->
+    <div id="experience-page" class="page">
+        <section class="section">
+            <h1>Curated For The Enthusiast</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Beyond the house, Transylvania offers unparalleled access to raw nature and high-octane adventure.</p>
+            
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Alpine Driving</h3>
+                    <p>Strategically positioned as the ultimate basecamp. Push your vehicle's limits on the legendary curves of the Transalpina and Transfăgărășan, then return to unparalleled comfort.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Mountain Cycling</h3>
+                    <p>Direct access to demanding technical trails and sweeping road routes. We provide a secure space to store and maintain your mountain bikes between downhill runs.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Historic Sibiu</h3>
+                    <p>Just a short drive away, lose yourself in the cobblestone streets and rich architectural heritage of one of Transylvania's most culturally significant cities.</p>
+                </div>
             </div>
-            <div class="card">
-                <h3>Mountain Cycling</h3>
-                <p>Access rugged trails and scenic road routes directly from the property, ideal for cycling enthusiasts.</p>
-            </div>
-            <div class="card">
-                <h3>Local Culture</h3>
-                <p>Explore historic Sibiu and nearby traditional villages, experiencing authentic Romanian heritage.</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section class="section">
-        <h2 class="section-title">Guest Experiences</h2>
-        <div class="testimonial-box">
-            <p>"An absolute masterpiece of a retreat. The perfect place to disconnect, relax the muscles in the hot tub after driving the mountains, and enjoy true stillness. We will absolutely be returning."</p>
-            <h4 style="margin-top: 20px; color: var(--primary); font-style: normal;">— Verified Guest, June 2026</h4>
-        </div>
-    </section>
+    <script>
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            // Show target page
+            document.getElementById(pageId + '-page').classList.add('active-page');
 
-    <section id="book" class="section" style="text-align: center; background: var(--light);">
-        <h2 class="section-title">Ready to Disconnect?</h2>
-        <p style="margin-bottom: 30px; font-size: 1.2rem;">Secure your dates directly for the best guaranteed rate.</p>
-        <!-- Replace with direct booking widget -->
-        <a href="mailto:contact@iseheia.ro" class="btn-primary">Email Us to Book</a>
-        <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">Or call us at +40 XXX XXX XXX</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Iseheia House. All rights reserved.</p>
-    </footer>
-
+            // Update active state in nav
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            if(document.getElementById('nav-' + pageId)) {
+                document.getElementById('nav-' + pageId).classList.add('active');
+            }
+            window.scrollTo(0,0);
+        }
+    </script>
 </body>
 </html>
